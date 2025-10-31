@@ -1,98 +1,501 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cadastro - Semeando o Futuro</title>
-  <link rel="stylesheet" href="css/style.css">
-  <style>
-    body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-    .container { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); width: 100%; max-width: 600px; }
-    h1 { text-align: center; color: #28a745; margin-bottom: 25px; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; margin-bottom: 5px; font-weight: bold; }
-    input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-    button[type="submit"] { background-color: #28a745; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 20px; }
-    button[type="submit"]:hover { background-color: #1e7e34; }
-    #feedback-message { padding: 15px; margin-bottom: 20px; border-radius: 4px; text-align: center; font-weight: bold; display: none; }
-    .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Semeando o Futuro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos de Exemplo para layout e feedback - Mantenha este bloco ou mova para style.css */
+        body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); width: 100%; max-width: 600px; }
+        h1 { text-align: center; color: #28a745; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button[type="submit"] { background-color: #28a745; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1.1em; margin-top: 20px; }
+        button[type="submit"]:hover { background-color: #1e7e34; }
+
+        /* Estilo para a mensagem de feedback */
+        #feedback-message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            display: none; /* Escondida por padrão, será mostrada via JS */
+        }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Formulário de Cadastro</h1>
+    <div class="container">
+        <h1>Formulário de Cadastro</h1>
+        
+        <div id="feedback-message"></div>
 
-    <div id="feedback-message"></div>
+        <form id="form-principal">
+            
+            <div class="form-group">
+                <label for="profile-type">Eu quero ser:</label>
+                <select id="profile-type" name="profile_type" required>
+                    <option value="">Selecione...</option>
+                    <option value="voluntario">Voluntário</option>
+                    <option value="doador">Doador</option>
+                </select>
+            </div>
 
-    <form id="form-principal">
-      <div class="form-group">
-        <label for="profile-type">Eu quero ser:</label>
-        <select id="profile-type" name="profile_type" required>
-          <option value="">Selecione...</option>
-          <option value="voluntario">Voluntário</option>
-          <option value="doador">Doador</option>
-        </select>
-      </div>
+            <div class="form-group">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}" placeholder="(00) 00000-0000" maxlength="15" required>
+            </div>
+            
+            <div id="campos-voluntario" style="display: none; border-top: 1px solid #eee; padding-top: 15px;">
+                <h3>Informações de Voluntariado</h3>
+                <div class="form-group">
+                    <label>Áreas de Voluntariado:</label>
+                    <input type="checkbox" id="educacao" name="area_voluntariado" value="Educacao"><label for="educacao" style="display: inline; font-weight: normal;"> Educação</label><br>
+                    <input type="checkbox" id="saude" name="area_voluntariado" value="Saude"><label for="saude" style="display: inline; font-weight: normal;"> Saúde</label><br>
+                    <input type="checkbox" id="meio_ambiente" name="area_voluntariado" value="Meio Ambiente"><label for="meio_ambiente" style="display: inline; font-weight: normal;"> Meio Ambiente</label>
+                </div>
+                <div class="form-group">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+                </div>
+            </div>
+            
+            <div id="campos-doador" style="display: none; border-top: 1px solid #eee; padding-top: 15px;">
+                <h3>Informações de Doação e Endereço</h3>
+                <div class="form-group">
+                    <label for="frequencia_doacao">Frequência da Doação:</label>
+                    <select id="frequencia_doacao" name="frequencia_doacao">
+                        <option value="unica">Doação Única</option>
+                        <option value="mensal">Mensal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="valor_doacao">Valor da Doação (R$):</label>
+                    <select id="valor_doacao" name="valor_doacao">
+                        <option value="50">R$ 50,00</option>
+                        <option value="100">R$ 100,00</option>
+                        <option value="personalizado">Personalizado</option>
+                    </select>
+                </div>
+                <div class="form-group" id="campo-valor-personalizado" style="display: none;">
+                    <label for="valor_personalizado">Outro Valor (R$):</label>
+                    <input type="number" id="valor_personalizado" name="valor_personalizado" step="0.01" min="10" placeholder="Ex: 150.50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" placeholder="00000-000">
+                </div>
+                
+                <div class="form-group">
+                    <label for="endereco">Endereço (complementar com as informações do endereço: numero, complemento e bairro):</label>
+                    <input type="text" id="endereco" name="endereco">
+                </div>
+                
+                <div class="form-group">
+                    <label for="estado_select">Estado (UF):</label>
+                    <select id="estado_select" name="estado" required>
+                        <option value="">Carregando Estados...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cidade_select">Cidade (Município):</label>
+                    <select id="cidade_select" name="cidade" required disabled>
+                        <option value="">Selecione um Estado primeiro</option>
+                    </select>
+                </div>
+            </div>
 
-      <div class="form-group">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
+            <button type="submit">Finalizar Cadastro</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px;"><a href="index.html">Voltar para a Home</a></p>
+    </div>
 
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // =======================================================
+            // VARIÁVEIS DOM
+            // =======================================================
+            const form = document.getElementById('form-principal');
+            const profileTypeSelect = document.getElementById('profile-type');
+            const camposVoluntario = document.getElementById('campos-voluntario');
+            const camposDoador = document.getElementById('campos-doador');
+            const valorDoacaoSelect = document.getElementById('valor_doacao');
+            const campoValorPersonalizado = document.getElementById('campo-valor-personalizado');
+            const feedbackMessage = document.getElementById('feedback-message');
+            // Elemento Telefone
+            const inputTelefone = document.getElementById('telefone'); 
+            // Elemento CPF
+            const inputCpf = document.getElementById('cpf'); 
+            // Elementos de Endereço (ADICIONADOS/MODIFICADOS)
+            const inputCep = document.getElementById('cep'); // Já existia
+            const inputEndereco = document.getElementById('endereco'); // Já existia
+            const selectEstado = document.getElementById('estado_select'); 
+            const selectCidade = document.getElementById('cidade_select'); 
+            
 
-      <div class="form-group">
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
-      </div>
+            // =======================================================
+            // FUNÇÕES DE PERSISTÊNCIA (Local Storage)
+            // =======================================================
+            
+            function getRegistros() {
+                const registrosJson = localStorage.getItem('registrosONG');
+                return registrosJson ? JSON.parse(registrosJson) : [];
+            }
 
-      <div id="campos-voluntario">
-        <h3>Informações de Voluntariado</h3>
-        <label><input type="checkbox" name="area_voluntariado" value="Educacao"> Educação</label><br>
-        <label><input type="checkbox" name="area_voluntariado" value="Saude"> Saúde</label><br>
-        <label><input type="checkbox" name="area_voluntariado" value="Meio Ambiente"> Meio Ambiente</label><br>
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
-      </div>
+            function saveRegistros(registros) {
+                localStorage.setItem('registrosONG', JSON.stringify(registros));
+            }
 
-      <div id="campos-doador">
-        <h3>Informações de Doação e Endereço</h3>
-        <label for="frequencia_doacao">Frequência da Doação:</label>
-        <select id="frequencia_doacao" name="frequencia_doacao">
-          <option value="unica">Doação Única</option>
-          <option value="mensal">Mensal</option>
-        </select>
+            function generateNewId(registros) {
+                if (registros.length === 0) {
+                    return 1;
+                }
+                const maxId = Math.max(...registros.map(r => r.id));
+                return maxId + 1;
+            }
 
-        <label for="valor_doacao">Valor da Doação (R$):</label>
-        <select id="valor_doacao" name="valor_doacao">
-          <option value="50">R$ 50,00</option>
-          <option value="100">R$ 100,00</option>
-          <option value="personalizado">Personalizado</option>
-        </select>
 
-        <label for="valor_personalizado">Outro Valor (R$):</label>
-        <input type="number" id="valor_personalizado" name="valor_personalizado">
+            // =======================================================
+            // FUNÇÕES DE FEEDBACK E LIMPEZA
+            // =======================================================
 
-        <label for="cep">CEP:</label>
-        <input type="text" id="cep" name="cep" placeholder="00000-000">
+            function showFeedback(message, type) {
+                feedbackMessage.textContent = message;
+                feedbackMessage.className = ''; 
+                feedbackMessage.classList.add(type); 
+                feedbackMessage.style.display = 'block';
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco">
+                setTimeout(() => {
+                    feedbackMessage.style.display = 'none';
+                }, 5000);
+            }
+            
+            function clearFormFields() {
+                form.reset(); 
+                camposVoluntario.style.display = 'none';
+                camposDoador.style.display = 'none';
+                campoValorPersonalizado.style.display = 'none';
+                
+                // Limpa campos IBGE e restaura estado inicial
+                selectEstado.innerHTML = '<option value="">Carregando Estados...</option>';
+                selectCidade.innerHTML = '<option value="">Selecione um Estado primeiro</option>';
+                selectCidade.disabled = true;
+                
+                // Recarrega os estados após o reset
+                fetchEstados();
+            }
 
-        <label for="estado_select">Estado (UF):</label>
-        <select id="estado_select" name="estado"></select>
 
-        <label for="cidade_select">Cidade (Município):</label>
-        <select id="cidade_select" name="cidade"></select>
-      </div>
+            // =======================================================
+            // FUNÇÕES DE MÁSCARA 
+            // =======================================================
 
-      <button type="submit">Finalizar Cadastro</button>
-    </form>
-    <p style="text-align:center; margin-top:20px;"><a href="index.html">Voltar para a Home</a></p>
-  </div>
-</body>
+            function maskTelefone(value) {
+                value = value.replace(/\D/g, ""); 
+                value = value.replace(/^(\d{2})(\d)/g, "($1) $2"); 
+                
+                if (value.length > 13) {
+                    value = value.replace(/(\d{5})(\d{4})$/, "$1-$2"); 
+                } else if (value.length > 12) {
+                    value = value.replace(/(\d{4})(\d{4})$/, "$1-$2"); 
+                }
+                
+                return value.slice(0, 15); 
+            }
+            
+            function maskCpf(value) {
+                value = value.replace(/\D/g, ""); 
+                value = value.replace(/(\d{3})(\d)/, "$1.$2");
+                value = value.replace(/(\d{3})(\d)/, "$1.$2");
+                value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+                return value.slice(0, 14); 
+            }
+            
+            function maskCep(value) {
+                value = value.replace(/\D/g, ""); 
+                value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+                return value.slice(0, 9); 
+            }
+
+
+            // =======================================================
+            // FUNÇÃO PRINCIPAL DE BUSCA POR CEP (NOVA)
+            // =======================================================
+
+            /**
+             * Busca endereço na API ViaCEP.
+             */
+            async function fetchEnderecoPorCep(cep) {
+                // Remove a máscara
+                const cepLimpo = cep.replace(/\D/g, ''); 
+                if (cepLimpo.length !== 8) {
+                    return; // Ignora se o CEP não tem 8 dígitos
+                }
+                
+                const url = `https://viacep.com.br/ws/${cepLimpo}/json/`;
+                
+                // Trava o campo de endereço enquanto busca
+                inputEndereco.value = "Buscando...";
+                inputEndereco.disabled = true;
+
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    if (data.erro) {
+                        showFeedback("CEP não encontrado.", 'error');
+                        inputEndereco.value = "";
+                        return;
+                    }
+
+                    // Preenche o campo de endereço
+                    if (data.logradouro) {
+                        inputEndereco.value = data.logradouro;
+                    } else {
+                        inputEndereco.value = ""; // Se logradouro não vier, limpa.
+                    }
+                    
+                    // Opcional: Preenche UF e Cidade (se houver dados do IBGE, pode ser ajustado para usar a API de estados/cidades)
+                    if (data.uf) {
+                        // Tenta selecionar o estado automaticamente
+                        selectEstado.value = data.uf;
+                        // Força a busca das cidades para preencher a cidade
+                        if (selectEstado.value === data.uf) {
+                            await fetchMunicipios(data.uf, data.localidade);
+                        }
+                    }
+
+                } catch (error) {
+                    console.error("Erro ao buscar CEP:", error);
+                    showFeedback("Erro na comunicação com o serviço de CEP.", 'error');
+                } finally {
+                    inputEndereco.disabled = false;
+                }
+            }
+
+
+            // =======================================================
+            // FUNÇÕES IBGE API (AJUSTADAS)
+            // =======================================================
+
+            async function fetchEstados() {
+                // ... (código da função fetchEstados inalterado) ...
+                const url = 'https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
+                
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const estados = await response.json();
+                    
+                    selectEstado.innerHTML = '<option value="">Selecione um Estado</option>';
+                    estados.forEach(estado => {
+                        const option = document.createElement('option');
+                        option.value = estado.sigla; 
+                        option.textContent = estado.nome;
+                        selectEstado.appendChild(option);
+                    });
+                    selectEstado.disabled = false;
+                } catch (error) {
+                    console.error("Erro ao buscar estados do IBGE:", error);
+                    selectEstado.innerHTML = '<option value="">Erro ao carregar estados</option>';
+                    selectEstado.disabled = true;
+                }
+            }
+
+            /**
+             * Busca Municípios e, opcionalmente, seleciona um município pelo nome.
+             * @param {string} uf - A sigla do Estado (UF).
+             * @param {string} [municipioParaSelecionar] - O nome do município a ser selecionado.
+             */
+            async function fetchMunicipios(uf, municipioParaSelecionar = null) {
+                if (!uf) {
+                    selectCidade.innerHTML = '<option value="">Selecione um Estado primeiro</option>';
+                    selectCidade.disabled = true;
+                    return;
+                }
+                
+                const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`;
+                selectCidade.innerHTML = '<option value="">Carregando Cidades...</option>';
+                selectCidade.disabled = true;
+                
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const municipios = await response.json();
+                    
+                    selectCidade.innerHTML = '<option value="">Selecione a Cidade</option>';
+                    municipios.forEach(municipio => {
+                        const option = document.createElement('option');
+                        option.value = municipio.nome; 
+                        option.textContent = municipio.nome;
+                        selectCidade.appendChild(option);
+                    });
+                    selectCidade.disabled = false;
+                    
+                    // Tenta selecionar o município se um nome foi fornecido (vindo do ViaCEP)
+                    if (municipioParaSelecionar) {
+                        selectCidade.value = municipioParaSelecionar;
+                    }
+
+                } catch (error) {
+                    console.error(`Erro ao buscar municípios para UF ${uf}:`, error);
+                    selectCidade.innerHTML = '<option value="">Erro ao carregar cidades</option>';
+                    selectCidade.disabled = true;
+                }
+            }
+
+
+            // =======================================================
+            // EVENTOS DE MÁSCARA E BUSCA CEP
+            // =======================================================
+
+            inputTelefone.addEventListener('input', (e) => {
+                e.target.value = maskTelefone(e.target.value);
+            });
+            
+            if (inputCpf) {
+                inputCpf.addEventListener('input', (e) => {
+                    e.target.value = maskCpf(e.target.value);
+                });
+            }
+            
+            if (inputCep) {
+                inputCep.addEventListener('input', (e) => {
+                    e.target.value = maskCep(e.target.value);
+                });
+                
+                // NOVO: Evento para buscar o endereço quando o campo CEP perde o foco (onblur) e está completo
+                inputCep.addEventListener('blur', (e) => {
+                    const cepValor = e.target.value;
+                    // Verifica se o campo tem o tamanho completo da máscara (00000-000)
+                    if (cepValor.length === 9) {
+                        fetchEnderecoPorCep(cepValor);
+                    }
+                });
+            }
+
+
+            // =======================================================
+            // LÓGICA DE VISIBILIDADE DE CAMPOS 
+            // =======================================================
+            
+            function toggleFields() {
+                const selectedValue = profileTypeSelect.value;
+                const isDoador = selectedValue === 'doador';
+
+                camposVoluntario.style.display = selectedValue === 'voluntario' ? 'block' : 'none';
+                camposDoador.style.display = isDoador ? 'block' : 'none';
+                
+                if (selectedValue !== 'doador' || valorDoacaoSelect.value !== 'personalizado') {
+                    campoValorPersonalizado.style.display = 'none';
+                }
+
+                // Gerencia o atributo 'required' nos novos campos de endereço
+                selectEstado.required = isDoador;
+                selectCidade.required = isDoador;
+                
+                if (isDoador && selectEstado.options.length <= 1) {
+                    fetchEstados();
+                }
+                
+                if (!isDoador) {
+                    selectCidade.innerHTML = '<option value="">Selecione um Estado primeiro</option>';
+                    selectCidade.disabled = true;
+                }
+            }
+
+            function toggleCustomValue() {
+                campoValorPersonalizado.style.display = valorDoacaoSelect.value === 'personalizado' ? 'block' : 'none';
+            }
+            
+            profileTypeSelect.addEventListener('change', toggleFields);
+            valorDoacaoSelect.addEventListener('change', toggleCustomValue);
+
+            // Evento para buscar cidades ao selecionar estado
+            selectEstado.addEventListener('change', (e) => {
+                const selectedUf = e.target.value;
+                fetchMunicipios(selectedUf);
+            });
+
+
+            // =======================================================
+            // TRATAMENTO DO SUBMIT DO FORMULÁRIO (GRAVAÇÃO)
+            // =======================================================
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                const formData = new FormData(event.target);
+                const registroData = {};
+                
+                for (const [key, value] of formData.entries()) {
+                    if (key === 'area_voluntariado') {
+                        if (!registroData.area_voluntariado) {
+                            registroData.area_voluntariado = [];
+                        }
+                        registroData.area_voluntariado.push(value);
+                    } else {
+                        registroData[key] = value;
+                    }
+                }
+                
+                try {
+                    const profileType = registroData.profile_type;
+                    if (!profileType) {
+                        throw new Error("Selecione o tipo de cadastro (Voluntário ou Doador).");
+                    }
+
+                    if (profileType === 'doador' && (!registroData.estado || !registroData.cidade)) {
+                         throw new Error("Por favor, selecione o Estado e a Cidade corretamente.");
+                    }
+
+                    const registros = getRegistros();
+                    
+                    registroData.id = generateNewId(registros);
+                    
+                    // Limpa a máscara dos campos antes de salvar
+                    if (registroData.telefone) registroData.telefone = registroData.telefone.replace(/[\.\(\)\-\s]/g, '');
+                    if (registroData.cpf) registroData.cpf = registroData.cpf.replace(/[\.\-\s]/g, '');
+                    if (registroData.cep) registroData.cep = registroData.cep.replace(/[\-\s]/g, '');
+
+                    registros.push(registroData);
+                    
+                    saveRegistros(registros);
+
+                    const tipo = profileType.charAt(0).toUpperCase() + profileType.slice(1);
+                    showFeedback(`${tipo} "${registroData.nome}" gravado com sucesso!`, 'success');
+                    
+                    clearFormFields(); 
+                    
+                } catch (error) {
+                    console.error("Erro ao processar o cadastro:", error);
+                    showFeedback(`Erro ao gravar: ${error.message || 'Verifique o console para mais detalhes.'}`, 'error');
+                }
+            });
+            
+            // Inicialização
+            toggleFields();
+            fetchEstados(); 
+        });
+    </script>
+    </body>
 </html>
