@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Conheça e apoie nossos projetos sociais ativos. Descubra oportunidades de voluntariado e como sua doação faz a diferença.">
     <title>Projetos Sociais - Semeando o Futuro</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <nav aria-label="Navegação Principal">
+        <nav class="main-nav" aria-label="Navegação Principal">
             <h1><a href="index.html">ONG Semeando o Futuro</a></h1>
-            <button aria-expanded="false" aria-controls="menu-list">Menu</button>
-            <ul id="menu-list">
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list">Menu</button>
+            <ul class="nav-list" id="menu-list">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="projetos.html" aria-current="page">Projetos</a></li>
                 <li><a href="cadastro.html">Quero Ajudar</a></li>
@@ -21,19 +22,19 @@
     </header>
 
     <main>
-        <section aria-labelledby="projects-title">
+        <section class="project-hero" aria-labelledby="projects-title">
             <h2 id="projects-title">Nossos Projetos: Fazendo a Diferença Juntos</h2>
             <p>Doações e o tempo de voluntários são essenciais para transformar estas ideias em realidade.</p>
-            <figure>
-                <img src="images/projeto-agua.jpg" alt="Voluntários instalando um sistema de captação de água da chuva.">
+            <figure class="hero-image">
+                <img src="images/projeto-agua.jpg" alt="Voluntários instalando um sistema de captação de água da chuva." loading="lazy">
                 <figcaption>Projeto Água Limpa: Acesso à água potável em comunidades rurais.</figcaption>
             </figure>
         </section>
 
-        <section aria-labelledby="active-projects-title">
+        <section class="project-list" aria-labelledby="active-projects-title">
             <h2 id="active-projects-title">Projetos Ativos por Categoria</h2>
 
-            <aside>
+            <aside class="project-filters">
                 <h3>Filtrar por Área de Atuação</h3>
                 <form>
                     <label><input type="radio" name="category" value="all" checked> Todos</label>
@@ -43,67 +44,67 @@
                 </form>
             </aside>
 
-            <div>
-                <article data-category="education">
+            <div class="projects-grid">
+                <article class="project-card" data-category="education">
                     <h3>Escola Digital Inclusiva</h3>
                     <figure>
-                        <img src="images/projeto-educacao.jpg" alt="Crianças usando computadores em uma sala de aula moderna.">
+                        <img src="images/projeto-educacao.jpg" alt="Crianças usando computadores em uma sala de aula moderna." loading="lazy">
                     </figure>
                     <p>Oferecemos aulas de informática e robótica para jovens de baixa renda, preparando-os para o mercado de trabalho do futuro.</p>
-                    <div>
+                    <div class="project-metrics">
                         <h4>Progresso de Arrecadação: 75%</h4>
-                        <meter value="75" min="0" max="100">75%</meter>
+                        <meter value="75" min="0" max="100">75% da meta alcançada</meter>
                     </div>
-                    <a href="assets/relatorios/relatorio-escola-digital.pdf">Ver Detalhes</a>
+                    <a href="assets/relatorios/relatorio-escola-digital.pdf" class="button">Ver Detalhes</a>
                 </article>
 
-                <article data-category="environment">
+                <article class="project-card" data-category="environment">
                     <h3>Reflorestamento Urbano</h3>
                     <figure>
-                        <img src="images/projeto-reflorestamento.jpg" alt="Grupo de voluntários plantando mudas de árvores.">
+                        <img src="images/projeto-reflorestamento.jpg" alt="Grupo de voluntários plantando mudas de árvores em um parque da cidade." loading="lazy">
                     </figure>
-                    <p>Plantamos árvores nativas em áreas degradadas, melhorando a qualidade do ar e a biodiversidade.</p>
-                    <div>
+                    <p>Plantamos árvores nativas em áreas degradadas da cidade, melhorando a qualidade do ar e a biodiversidade local.</p>
+                    <div class="project-metrics">
                         <h4>Voluntários Necessários: 25</h4>
-                        <progress value="20" max="25">80%</progress>
+                        <progress value="20" max="25">80% das vagas preenchidas</progress>
                     </div>
-                    <a href="cadastro.html">Seja Voluntário</a>
+                    <a href="cadastro.html" class="button">Seja Voluntário</a>
                 </article>
 
-                <article data-category="health">
+                <article class="project-card" data-category="health">
                     <h3>Projeto em Saúde</h3>
                     <figure>
-                        <img src="images/medico-com-estetoscopio.jpg" alt="Imagem atrelada ao assunto Saúde">
+                        <img src="images/medico-com-estetoscopio.jpg" alt="Imagem atrelada ao assunto Saúde" loading="lazy">
                     </figure>
                     <p>Sem projeto ativo.</p>
-                    <div>
+                    <div class="project-metrics">
                         <p>Sem métricas.</p>
                     </div>
-                    <a href="cadastro.html">Seja Voluntário em futuros projetos</a>
+                    <a href="cadastro.html" class="button">Seja Voluntário em futuros projetos</a>
                 </article>
             </div>
         </section>
         
-        <section aria-labelledby="cta-title">
+        <section class="cta-voluntariado-doacao" aria-labelledby="cta-title">
             <h2 id="cta-title">Sua Ação Transforma</h2>
-            <div>
-                <article>
+            <div class="cta-cards">
+                <article class="voluntariado-card">
                     <h3>Voluntariado</h3>
-                    <p>Encontre a oportunidade perfeita para doar seu tempo e conhecimento.</p>
-                    <a href="cadastro.html?type=voluntario">Cadastrar como Voluntário</a>
+                    <p>Encontre a oportunidade perfeita para doar seu tempo e conhecimento. Temos vagas flexíveis.</p>
+                    <a href="cadastro.html?type=voluntario" class="button secondary-cta">Cadastrar como Voluntário</a>
                 </article>
-                <article>
+                <article class="doacao-card">
                     <h3>Doação Online</h3>
-                    <p>Contribua com qualquer valor e ajude a sustentar nossos projetos.</p>
-                    <a href="cadastro.html?type=doador">Realizar Doação</a>
+                    <p>Contribua com qualquer valor e ajude a sustentar nossos projetos. Transparência garantida.</p>
+                    <a href="cadastro.html?type=doador" class="button primary-cta">Realizar Doação</a>
                 </article>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer id="footer-contato">
         <p>&copy; 2025 ONG Semeando o Futuro.</p>
-        <p><a href="admin-login.html">Acesso Restrito (Admin)</a></p>
+        <p class="admin-link"><a href="admin-login.html">Acesso Restrito (Admin)</a></p>
     </footer>
 </body>
 </html>

@@ -4,6 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - Semeando o Futuro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h1, h2 {
+      color: #28a745;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      margin-top: 30px;
+    }
+
+    .metrics {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .metric-card {
+      background-color: #e9ecef;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .metric-card h3 {
+      margin: 0 0 5px 0;
+      color: #6c757d;
+      font-size: 1em;
+    }
+
+    .metric-card p {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 0;
+      color: #28a745;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: white;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #dee2e6;
+      font-size: 0.9em;
+    }
+
+    th {
+      background-color: #28a745;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    button {
+      padding: 8px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      color: #28a745;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <div class="container" id="main-content">
@@ -28,6 +128,7 @@
 
     <h2>Gerenciamento de Projetos</h2>
     <button id="btn-abrir-modal-criar-projeto">Criar Novo Projeto</button>
+
     <table id="tabela-projetos">
       <thead>
         <tr>
