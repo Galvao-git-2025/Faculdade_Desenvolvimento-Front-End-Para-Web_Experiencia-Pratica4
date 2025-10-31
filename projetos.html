@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conheça e apoie nossos projetos sociais ativos. Descubra oportunidades de voluntariado e como sua doação faz a diferença.">
+    <title>Projetos Sociais - Semeando o Futuro</title>
+</head>
+<body>
+    <header>
+        <nav aria-label="Navegação Principal">
+            <h1><a href="index.html">ONG Semeando o Futuro</a></h1>
+            <button aria-expanded="false" aria-controls="menu-list">Menu</button>
+            <ul id="menu-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html" aria-current="page">Projetos</a></li>
+                <li><a href="cadastro.html">Quero Ajudar</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section aria-labelledby="projects-title">
+            <h2 id="projects-title">Nossos Projetos: Fazendo a Diferença Juntos</h2>
+            <p>Doações e o tempo de voluntários são essenciais para transformar estas ideias em realidade.</p>
+            <figure>
+                <img src="images/projeto-agua.jpg" alt="Voluntários instalando um sistema de captação de água da chuva.">
+                <figcaption>Projeto Água Limpa: Acesso à água potável em comunidades rurais.</figcaption>
+            </figure>
+        </section>
+
+        <section aria-labelledby="active-projects-title">
+            <h2 id="active-projects-title">Projetos Ativos por Categoria</h2>
+
+            <aside>
+                <h3>Filtrar por Área de Atuação</h3>
+                <form>
+                    <label><input type="radio" name="category" value="all" checked> Todos</label>
+                    <label><input type="radio" name="category" value="education"> Educação</label>
+                    <label><input type="radio" name="category" value="health"> Saúde</label>
+                    <label><input type="radio" name="category" value="environment"> Meio Ambiente</label>
+                </form>
+            </aside>
+
+            <div>
+                <article data-category="education">
+                    <h3>Escola Digital Inclusiva</h3>
+                    <figure>
+                        <img src="images/projeto-educacao.jpg" alt="Crianças usando computadores em uma sala de aula moderna.">
+                    </figure>
+                    <p>Oferecemos aulas de informática e robótica para jovens de baixa renda, preparando-os para o mercado de trabalho do futuro.</p>
+                    <div>
+                        <h4>Progresso de Arrecadação: 75%</h4>
+                        <meter value="75" min="0" max="100">75%</meter>
+                    </div>
+                    <a href="assets/relatorios/relatorio-escola-digital.pdf">Ver Detalhes</a>
+                </article>
+
+                <article data-category="environment">
+                    <h3>Reflorestamento Urbano</h3>
+                    <figure>
+                        <img src="images/projeto-reflorestamento.jpg" alt="Grupo de voluntários plantando mudas de árvores.">
+                    </figure>
+                    <p>Plantamos árvores nativas em áreas degradadas, melhorando a qualidade do ar e a biodiversidade.</p>
+                    <div>
+                        <h4>Voluntários Necessários: 25</h4>
+                        <progress value="20" max="25">80%</progress>
+                    </div>
+                    <a href="cadastro.html">Seja Voluntário</a>
+                </article>
+
+                <article data-category="health">
+                    <h3>Projeto em Saúde</h3>
+                    <figure>
+                        <img src="images/medico-com-estetoscopio.jpg" alt="Imagem atrelada ao assunto Saúde">
+                    </figure>
+                    <p>Sem projeto ativo.</p>
+                    <div>
+                        <p>Sem métricas.</p>
+                    </div>
+                    <a href="cadastro.html">Seja Voluntário em futuros projetos</a>
+                </article>
+            </div>
+        </section>
+        
+        <section aria-labelledby="cta-title">
+            <h2 id="cta-title">Sua Ação Transforma</h2>
+            <div>
+                <article>
+                    <h3>Voluntariado</h3>
+                    <p>Encontre a oportunidade perfeita para doar seu tempo e conhecimento.</p>
+                    <a href="cadastro.html?type=voluntario">Cadastrar como Voluntário</a>
+                </article>
+                <article>
+                    <h3>Doação Online</h3>
+                    <p>Contribua com qualquer valor e ajude a sustentar nossos projetos.</p>
+                    <a href="cadastro.html?type=doador">Realizar Doação</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ONG Semeando o Futuro.</p>
+        <p><a href="admin-login.html">Acesso Restrito (Admin)</a></p>
+    </footer>
+</body>
+</html>
